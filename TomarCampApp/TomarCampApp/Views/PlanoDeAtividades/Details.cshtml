@@ -1,0 +1,42 @@
+﻿@model TomarCampApp.Models.PlanoDeAtividades
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlanoDeAtividades</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Turno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Turno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataInicioPA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataInicioPA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataFimPA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataFimPA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

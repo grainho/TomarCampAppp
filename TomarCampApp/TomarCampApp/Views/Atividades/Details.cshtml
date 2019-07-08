@@ -1,0 +1,56 @@
+﻿@model TomarCampApp.Models.Atividades
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Atividades</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataCriacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataCriacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.materiais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.materiais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Func"))
+    {
+        <text>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        </text>
+    }
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

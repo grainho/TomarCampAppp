@@ -1,0 +1,84 @@
+﻿@model TomarCampApp.Models.Criancas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Criancas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pai.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pai.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Doencas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doencas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumCC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIF)
+        </dd>
+
+    </dl>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaDeObjetosDePlanoDeAtividades.First().Turno) |
+                
+            </th>
+        </tr>
+        @foreach (var item in Model.ListaDeObjetosDePlanoDeAtividades)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Turno, "Details", "PlanoDeAtividades", new { id = item.ID }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

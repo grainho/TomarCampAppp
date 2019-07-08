@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TomarCampApp.Models.Funcionarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Funcionarios</h2>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Criar Novo Funcionario", "Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            <img src="~/imagens/@item.Foto" height="50" />
+            @*@Html.DisplayFor(modelItem => item.Foto)*@
+        </td>
+        <td>
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
+
+            @if (User.IsInRole("Func")||User.IsInRole("Admin"))
+            {
+
+                <text>
+                |
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) 
+                </text>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <text>
+                |
+                @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
+                </text>
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>
