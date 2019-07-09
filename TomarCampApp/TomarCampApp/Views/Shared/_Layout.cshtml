@@ -65,7 +65,7 @@
                     {
                         <li>@Html.ActionLink("Encarregados de Educação", "Index", "Pais", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     }
-                    @if (User.IsInRole("Pai"))
+                    @if (User.IsInRole("Pai")||User.IsInRole("Func"))
                     {
 
                         <li>@Html.ActionLink("Crianças", "Index", "Criancas")</li>
