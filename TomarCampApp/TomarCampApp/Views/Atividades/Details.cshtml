@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2> @Html.DisplayFor(model => model.Nome)</h2>
 
 <div>
-    <h4>Atividades</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -48,10 +48,10 @@
     @if (User.IsInRole("Func"))
     {
         <text>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
            
         </text>
     }
 
-    @Html.ActionLink("Voltar à lista", "Index")
+    @Html.ActionLink("Voltar à lista de Atividades", "Index")
 </p>
