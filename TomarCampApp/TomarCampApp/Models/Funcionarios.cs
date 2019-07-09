@@ -23,6 +23,7 @@ namespace TomarCampApp.Models
         ErrorMessage = "Apenas primeiro e ultimo nomes")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         [Display(Name = "Fotografia")]
         public string Foto { get; set; }

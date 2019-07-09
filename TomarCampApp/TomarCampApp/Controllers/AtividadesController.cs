@@ -21,16 +21,21 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: Atividades/Details/5
+        /// <summary>
+        /// Mostra detalhes de uma atividade
+        /// </summary>
+        /// <param name="id">identifica a atividade</param>
+        /// <returns>devolve a View com os dados</returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Atividades atividades = db.Atividades.Find(id);
             if (atividades == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(atividades);
         }
@@ -66,12 +71,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Atividades atividades = db.Atividades.Find(id);
             if (atividades == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(atividades);
         }
@@ -99,13 +104,15 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Atividades atividades = db.Atividades.Find(id);
             if (atividades == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
+
+            Session["Atividade"] = atividades.ID;
             return View(atividades);
         }
 
