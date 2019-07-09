@@ -128,7 +128,10 @@ namespace TomarCampApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", criancas.PaiFK);
+            ViewBag.PaiFK = db.Criancas.Find(id).PaiFK;
+            Session["pai"] = id;
+            ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();            
+            ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
             return View(criancas);
         }
 
@@ -137,16 +140,80 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Idade,Doencas,NumCC,NIF,PaiFK")] Criancas criancas)
+        public ActionResult Edit([Bind(Include = "ID,Nome,Idade,Doencas,NumCC,NIF")] Criancas criancas, string[] opcoesEscolhidasDePA, string [] opcoesEscolhidasDePais)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(criancas).State = EntityState.Modified;
+
+
+                var cria = db.Criancas.Include(pa => pa.ListaDeObjetosDePlanoDeAtividades).Where(pa => pa.ID == criancas.ID).SingleOrDefault();
+
+
+
+                if (ModelState.IsValid)
+                {
+                    cria.Nome = criancas.Nome;
+                    cria.Idade = criancas.Idade;
+                    cria.Doencas = criancas.Doencas;
+                    cria.NumCC = criancas.NumCC;
+                    cria.NIF = criancas.NIF;
+                    cria.PaiFK = db.Criancas.Find(criancas.ID).PaiFK;
+
+
+                }
+                else
+                {
+                    ViewBag.PaiFK = db.Criancas.Find(criancas.ID).PaiFK;
+                    Session["pai"] = criancas.ID;
+                    ViewBag.ListaObjetosDePai = db.Pais.OrderBy(p => p.Nome).ToList();
+                    ViewBag.ListaObjetosDePA = db.PlanoDeAtividades.OrderBy(pa => pa.Turno).ToList();
+                    return View(criancas);
+                }
+                // tentar fazer o UPDATE
+                if (TryUpdateModel(cria, "", new string[] { nameof(cria.Nome), nameof(cria.Idade), nameof(cria.Doencas), nameof(cria.NumCC), nameof(cria.NIF), nameof(cria.PaiFK), nameof(cria.ListaDeObjetosDePlanoDeAtividades) }))
+                {
+                    var elementosDePA = db.PlanoDeAtividades.ToList();
+
+                    if (opcoesEscolhidasDePA != null)
+                    {
+                        // se existirem opções escolhidas, vamos associá-las
+                        foreach (var papa in elementosDePA)
+                        {
+                            if (opcoesEscolhidasDePA.Contains(papa.ID.ToString()))
+                            {
+                                // se uma opção escolhida ainda não está associada, cria-se a associação
+                                if (!cria.ListaDeObjetosDePlanoDeAtividades.Contains(papa))
+                                {
+                                    cria.ListaDeObjetosDePlanoDeAtividades.Add(papa);
+                                }
+                            }
+                            else
+                            {
+                                // caso exista associação para uma opção que não foi escolhida, 
+                                // remove-se essa associação
+                                cria.ListaDeObjetosDePlanoDeAtividades.Remove(papa);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // não existem opções escolhidas!
+                        // vamos eliminar todas as associações
+                        foreach (var papa in elementosDePA)
+                        {
+                            if (cria.ListaDeObjetosDePlanoDeAtividades.Contains(papa))
+                            {
+                                cria.ListaDeObjetosDePlanoDeAtividades.Remove(papa);
+                            }
+                        }
+                    }
+                }
+
+                // guardar as alterações
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.PaiFK = new SelectList(db.Pais, "ID", "Nome", criancas.PaiFK);
-            return View(criancas);
+
+                // devolver controlo à View
+                return RedirectToAction("Details", "Criancas",new { id = criancas.ID});
+            
+            
         }
 
         // GET: Criancas/Delete/5
