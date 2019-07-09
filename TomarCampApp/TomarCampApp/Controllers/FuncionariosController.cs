@@ -72,7 +72,7 @@ namespace TomarCampApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "ID,Nome")] Funcionarios funcionarios, HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "ID,Nome,Email")] Funcionarios funcionarios, HttpPostedFileBase fotografia)
         {
 
             /// precisamos de processar a fotografia
@@ -152,12 +152,40 @@ namespace TomarCampApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Func")]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Foto")] Funcionarios funcionarios)
+        public ActionResult Edit([Bind(Include = "ID,Nome,Email")] Funcionarios funcionarios, HttpPostedFileBase fotografia)
         {
+            //var auxiliar
+            string caminho = "";
+            bool haFicheiro = false;
+
+            //há ficheiro?
+            if (fotografia == null)
+            {
+                //não há ficheiro, atribui-se-lhe o avatar
+                funcionarios.Foto = "nouser.png";
+            }
+            else
+            {
+                if (fotografia.ContentType == "image/jpeg" || fotografia.ContentType == "image/png")
+                {
+                    string extensao = Path.GetExtension(fotografia.FileName).ToLower();
+                    Guid g;
+                    g = Guid.NewGuid();
+                    string nome = g.ToString() + extensao;
+
+                    caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
+                    //atribuir ao agente o nome do ficheiro
+                    funcionarios.Foto = nome;
+                    //assinalar q ha foto
+                    haFicheiro = true;
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(funcionarios).State = EntityState.Modified;
                 db.SaveChanges();
+                if (haFicheiro)
+                    fotografia.SaveAs(caminho);
                 return RedirectToAction("Index");
             }
             return View(funcionarios);

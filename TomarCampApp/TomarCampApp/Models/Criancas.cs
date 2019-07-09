@@ -42,6 +42,7 @@ namespace TomarCampApp.Models
 
 
         [ForeignKey("Pai")]
+        [Display(Name = "Encarregado de Educação")]
         public int PaiFK { get; set; }
         public virtual Pais Pai { get; set; }
 

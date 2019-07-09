@@ -29,6 +29,7 @@ namespace TomarCampApp.Models
 
 
         [ForeignKey("Atividade")]
+        [Display(Name = "Atividade")]
         public int AtividadeFK { get; set; }
         public virtual Atividades Atividade { get; set; }
 

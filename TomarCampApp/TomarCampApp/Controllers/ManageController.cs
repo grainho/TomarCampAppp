@@ -51,16 +51,29 @@ namespace TomarCampApp.Controllers
                 : "";
 
             var Pais = db.Pais.OrderBy(p => p.Nome).ToList();
+            var Func = db.Funcionarios.OrderBy(p => p.Nome).ToList();
             ViewBag.id = 0;
             ViewBag.LPais = db.Pais;
-            foreach (var item in Pais)
+            if (User.IsInRole("Pai"))
             {
-                if (item.Email.Equals(User.Identity.GetUserName()))
+                foreach (var item in Pais)
                 {
-                    ViewBag.id = item.ID;
+                    if (item.Email.Equals(User.Identity.GetUserName()))
+                    {
+                        ViewBag.id = item.ID;
+                    }
                 }
             }
-
+            else
+            {
+                foreach (var item in Func)
+                {
+                    if (item.Email.Equals(User.Identity.GetUserName()))
+                    {
+                        ViewBag.id = item.ID;
+                    }
+                }
+            }
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
