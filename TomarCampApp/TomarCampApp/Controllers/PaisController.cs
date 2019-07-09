@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TomarCampApp.Models;
 
+
 namespace TomarCampApp.Controllers
 {
     [Authorize]
@@ -18,6 +19,9 @@ namespace TomarCampApp.Controllers
         // GET: Pais
         public ActionResult Index()
         {
+
+            
+
             return View(db.Pais.ToList());
         }
 
@@ -43,6 +47,7 @@ namespace TomarCampApp.Controllers
         // GET: Pais/Edit/5
         public ActionResult Edit(int? id)
         {
+           
             if (id == null)
             {
                 //este erro ocorre porque o utilizador anda a fazer asneiras
@@ -64,11 +69,12 @@ namespace TomarCampApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Nome,Idade,NumCC,NIF,Telemovel,Email")] Pais pais)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(pais).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(pais);
         }
