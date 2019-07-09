@@ -37,6 +37,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: Concretizacaos/Create
+        [Authorize(Roles = "Func")]
         public ActionResult Create()
         {
             ViewBag.AtividadeFK = new SelectList(db.Atividades, "ID", "Nome");
@@ -49,6 +50,7 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func")]
         public ActionResult Create([Bind(Include = "ID,dataInicioConcretizacao,dataFimConcretizacao,local,AtividadeFK")] Concretizacao concretizacao, string[] opcoesEscolhidasDeFunc)
         {
 
@@ -88,6 +90,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: Concretizacaos/Edit/5
+        [Authorize(Roles = "Func")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -109,6 +112,7 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func")]
         public ActionResult Edit([Bind(Include = "ID,dataInicioConcretizacao,dataFimConcretizacao,local,AtividadeFK")] Concretizacao concretizacao, string[] opcoesEscolhidasDeFunc)
         {
 
@@ -180,6 +184,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: Concretizacaos/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -197,6 +202,7 @@ namespace TomarCampApp.Controllers
         // POST: Concretizacaos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Concretizacao concretizacao = db.Concretizacao.Find(id);

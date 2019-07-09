@@ -36,6 +36,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: PlanoDeAtividades/Create
+        [Authorize(Roles = "Func")]
         public ActionResult Create()
         {
             ViewBag.ListaObjetosDeConc = db.Concretizacao.OrderBy(f => f.dataInicioConcretizacao).ToList();
@@ -47,6 +48,7 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func")]
         public ActionResult Create([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades, string [] opcoesEscolhidasDeConc)
         {
 
@@ -83,6 +85,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: PlanoDeAtividades/Edit/5
+        [Authorize(Roles = "Func")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +106,7 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Func")]
         public ActionResult Edit([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades, string[] opcoesEscolhidasDeConc)
         {
             var pa = db.PlanoDeAtividades.Include(c => c.ListaDeObjetosDeConcretizacao).Where(c => c.ID == planoDeAtividades.ID).SingleOrDefault();
@@ -171,6 +175,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: PlanoDeAtividades/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -188,6 +193,7 @@ namespace TomarCampApp.Controllers
         // POST: PlanoDeAtividades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);

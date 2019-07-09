@@ -94,7 +94,7 @@ namespace TomarCampApp.Controllers
         }
 
         // GET: Atividades/Delete/5
-        [Authorize(Roles = "Func")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,7 +112,7 @@ namespace TomarCampApp.Controllers
         // POST: Atividades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Func")]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Atividades atividades = db.Atividades.Find(id);
