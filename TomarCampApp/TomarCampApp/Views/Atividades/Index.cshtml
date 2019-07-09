@@ -8,7 +8,8 @@
 @if (User.IsInRole("Func"))
 {
 <p>
-    @Html.ActionLink("Criar Nova Atividade", "Create")
+    @Html.ActionLink("Criar Nova Atividade", "Create") |
+    @Html.ActionLink("Criar Nova Concretização", "Create", "Concretizacaos", null, null)
 </p>
 }
 <table class="table">
