@@ -38,8 +38,7 @@ namespace TomarCampApp.Models
          ErrorMessage = "Número Inválido")]
         public string Telemovel { get; set; }
         [Required]
-        [RegularExpression(@"[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-         ErrorMessage = "email Inválido")]
+        [EmailAddress]
         public string Email { get; set; }
 
 
