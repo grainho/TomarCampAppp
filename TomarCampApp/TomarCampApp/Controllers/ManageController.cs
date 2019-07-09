@@ -34,6 +34,8 @@ namespace TomarCampApp.Controllers
             }
         }
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         //
         // GET: /Account/Index
         [HttpGet]
@@ -47,6 +49,17 @@ namespace TomarCampApp.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+            var Pais = db.Pais.OrderBy(p => p.Nome).ToList();
+            ViewBag.id = 0;
+            ViewBag.LPais = db.Pais;
+            foreach (var item in Pais)
+            {
+                if (item.Email.Equals(User.Identity.GetUserName()))
+                {
+                    ViewBag.id = item.ID;
+                }
+            }
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel

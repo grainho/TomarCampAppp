@@ -36,7 +36,7 @@ namespace TomarCampApp.Models
         [RegularExpression("^[9][1236][0-9]{7}",
          ErrorMessage = "Número telemovel Inválido")]
         public string Telemovel { get; set; }
-        [Required]
+        //[Required]
         [EmailAddress]
         public string Email { get; set; }
 
