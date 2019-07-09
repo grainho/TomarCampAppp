@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Atividade.Nome</h2>
 
 <div>
-    <h4>Concretizacao</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,6 +16,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.Atividade.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atividade.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atividade.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atividade.materiais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atividade.materiais)
         </dd>
 
         <dt>
@@ -43,8 +59,26 @@
         </dd>
 
     </dl>
+    <h4>Funcionários Responsáveis</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaDeObjetosDeFuncionario.First().Nome)
+            </th>
+        </tr>
+        @foreach (var item in Model.ListaDeObjetosDeFuncionario)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Nome, "Details", "Funcionarios", new { id = item.ID }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar à Lista", "Index")
 </p>

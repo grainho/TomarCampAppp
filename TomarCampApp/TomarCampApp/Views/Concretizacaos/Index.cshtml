@@ -4,47 +4,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Concretizações</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar Nova Concretização", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Atividade.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dataInicioConcretizacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dataFimConcretizacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.local)
-        </th>
-        <th></th>
+        
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Atividade.Nome)
+            @Html.ActionLink(item.Atividade.Nome, "Details", new { id=item.ID}, null)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataInicioConcretizacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataFimConcretizacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.local)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+        
+        
     </tr>
 }
 
