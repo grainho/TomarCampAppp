@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Lista de Planos de atividades</h2>
 
 <div>
-    <h4>PlanoDeAtividades</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,8 +35,29 @@
         </dd>
 
     </dl>
+
+    <h4>Concretizações de Atividades</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaDeObjetosDeConcretizacao.First().Atividade.Nome)
+            </th>
+        </tr>
+        @foreach (var item in Model.ListaDeObjetosDeConcretizacao)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Atividade.Nome, "Details", "Concretizacaos", new { id = item.ID }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.IsInRole("Func"))
+    {
+        @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) <text>|</text>
+    }
+    @Html.ActionLink("Voltar à lista", "Index")
 </p>

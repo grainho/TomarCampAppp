@@ -6,9 +6,12 @@
 
 <h2>Concretizações</h2>
 
+@if (User.IsInRole("Func"))
+{
 <p>
     @Html.ActionLink("Criar Nova Concretização", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>

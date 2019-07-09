@@ -78,7 +78,11 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("✏️", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("🗑️", "Delete", new { id = Model.ID }) |
+    @if (User.IsInRole("Func"))
+    {
+        @Html.ActionLink("✏️", "Edit", new { id = Model.ID })
+        <text>|</text>
+    }
+
     @Html.ActionLink("Voltar à Lista", "Index")
 </p>
