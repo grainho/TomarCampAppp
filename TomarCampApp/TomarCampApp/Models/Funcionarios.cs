@@ -19,7 +19,7 @@ namespace TomarCampApp.Models
 
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[A-Z][a-z]{1,}[ ][A-Z][a-z]{1,}",
+        [RegularExpression("^[A-Z][a-z]{1,}[ ][A-Z][a-z]{1,}",
         ErrorMessage = "Apenas primeiro e ultimo nomes")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }

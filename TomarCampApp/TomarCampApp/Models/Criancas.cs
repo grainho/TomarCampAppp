@@ -19,25 +19,24 @@ namespace TomarCampApp.Models
 
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[A-Z][a-z]{1,}[ ][A-Z][a-z]{1,}",
-         ErrorMessage = "Apenas primeiro e ultimo nomes")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
-        [RegularExpression(@"^[1-9][0-9]{0,1})$",
-         ErrorMessage = "entre 1 e 99 anos")]
+        
+        [Required]
         [Display(Name = "Idade")]
         public int Idade { get; set; }
        
         [Display(Name = "Doenças da Criança")]
         public string Doencas { get; set; }
+
         [Required]
-        [RegularExpression(@"^[1-9][0-9]{7,})$",
-         ErrorMessage = "CC Invalido")]
+        /**[RegularExpression("^[1-9][0-9]{7,}",
+         ErrorMessage = "CC Invalido")]*/
         [Display(Name = "Número de Cartão de Cidadão")]
         public string NumCC { get; set; }
         [Required]
-        [RegularExpression(@"^[1-9][0-9]{8,})$",
-         ErrorMessage = "NIF invalido")]
+        /**[RegularExpression("^[1-9][0-9]{8,}",
+         ErrorMessage = "NIF invalido")]*/
         [Display(Name = "NIF")]
         public string NIF { get; set; }
 

@@ -19,23 +19,21 @@ namespace TomarCampApp.Models
 
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[A-Z][a-z]{1,}[ ][A-Z][a-z]{1,}$",
+        [RegularExpression("^[A-Z][a-z]{1,}[ ][A-Z][a-z]{1,}",
         ErrorMessage = "Apenas primeiro e ultimo nomes")]
         public string Nome { get; set; }
         [Required]
-        [RegularExpression(@"^[1-9][0-9]{0,1})$",
-        ErrorMessage = "Entre 1 e 99 anos")]
         public int Idade { get; set; }
         [Required]
-        [RegularExpression(@"^[1-9][0-9]{7,})$",
+        [RegularExpression("^[1-9][0-9]{7,}",
          ErrorMessage = "CC Invalido")]
         public string NumCC { get; set; }
         [Required]
-        [RegularExpression(@"^[1-9][0-9]{8,})$",
+        [RegularExpression("^[1-9][0-9]{8,}",
          ErrorMessage = "NIF invalido")]
         public string NIF { get; set; }
         [Required]
-        [RegularExpression(@"^[9][1236][0-9]{7}$",
+        [RegularExpression("^[9][1236][0-9]{7}",
          ErrorMessage = "Número telemovel Inválido")]
         public string Telemovel { get; set; }
         [Required]
