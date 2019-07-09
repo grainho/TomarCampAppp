@@ -5,6 +5,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <style>
+        li {
+            display: block;
+            transition-duration: 0.5s;
+            padding-bottom:0px;
+            margin-bottom:0px;
+        }
+
+            li:hover {
+                cursor: pointer;
+            }
+
+        ul li ul {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            transition: all 0.5s ease; 
+            
+            display: none;
+        }
+
+            ul li:hover > ul,
+            ul li ul:hover {
+                visibility: visible;
+                opacity: 1;
+                display: block;
+            }
+
+            
+
+            .dropdown{
+                padding-left: 15px;
+                padding-top: 0px;
+                margin-top:0px;
+            }
+          
+    </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -20,6 +57,7 @@
                 </button>
                 @Html.ActionLink("TomarCamp", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Funcionários", "Index", "Funcionarios")</li>
@@ -33,8 +71,15 @@
                         <li>@Html.ActionLink("Crianças", "Index", "Criancas")</li>
                     }
 
-                    <li>@Html.ActionLink("Atividades", "Index", "Atividades")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>
+                        @Html.ActionLink("Atividades", "")
+                        <ul class="dropdown">
+                            <li>@Html.ActionLink("Atividades", "Index", "Atividades")</li>
+                            <li>@Html.ActionLink("Concretizações", "Index", "Concretizacaos")</li>
+                            <li>@Html.ActionLink("Planos de Atividades", "Index", "PlanoDeAtividades")</li>
+                        </ul>
+                    </li>
+                    <li class="contact">@Html.ActionLink("Contact", "Contact", "Home")</li>
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
