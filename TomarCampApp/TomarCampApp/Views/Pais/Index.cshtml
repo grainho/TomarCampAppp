@@ -35,7 +35,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+            @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Idade)

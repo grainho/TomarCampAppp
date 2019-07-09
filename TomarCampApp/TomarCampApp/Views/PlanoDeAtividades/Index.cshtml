@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Turno)
+            @Html.DisplayNameFor(model => model.Turno) 
         </th>
         <th>
             @Html.DisplayNameFor(model => model.dataInicioPA)
@@ -26,7 +26,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Turno)
+
+            @Html.ActionLink(item.Turno, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dataInicioPA)
@@ -35,9 +36,8 @@
             @Html.DisplayFor(modelItem => item.dataFimPA)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            
+            @Html.ActionLink("🗑️", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
