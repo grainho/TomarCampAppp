@@ -15,7 +15,9 @@ namespace TomarCampApp.Models
         }
 
         public int ID { get; set; }
-
+        [Required]
+        [RegularExpression(@"[A-Z]{1,}$",
+         ErrorMessage = "Turno Inválido")]
         public string Turno { get; set; }
 
         public DateTime dataInicioPA { get; set; }

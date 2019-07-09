@@ -39,7 +39,7 @@ namespace TomarCampApp.Models
         public string Telemovel { get; set; }
         [Required]
         [RegularExpression(@"[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-         ErrorMessage = "Número Inválido")]
+         ErrorMessage = "email Inválido")]
         public string Email { get; set; }
 
 
