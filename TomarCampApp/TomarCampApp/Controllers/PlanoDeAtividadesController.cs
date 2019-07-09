@@ -38,6 +38,7 @@ namespace TomarCampApp.Controllers
         // GET: PlanoDeAtividades/Create
         public ActionResult Create()
         {
+            ViewBag.ListaObjetosDeConc = db.Concretizacao.OrderBy(f => f.dataInicioConcretizacao).ToList();
             return View();
         }
 
@@ -46,8 +47,31 @@ namespace TomarCampApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades)
+        public ActionResult Create([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades, string [] opcoesEscolhidasDeConc)
         {
+
+            if (opcoesEscolhidasDeConc == null)
+            {
+                ModelState.AddModelError("", "Necessita escolher pelo menos uma Concretização para associar ao plano de atividades.");
+
+                ViewBag.ListaObjetosDeConc = db.Concretizacao.OrderBy(f => f.dataInicioConcretizacao).ToList();
+
+                // devolver controlo à View
+                return View(planoDeAtividades);
+            }
+
+            List<Concretizacao> listaDeObjetosDeConcEscolhidos = new List<Concretizacao>();
+            foreach (string item in opcoesEscolhidasDeConc)
+            {
+
+                Concretizacao c = db.Concretizacao.Find(Convert.ToInt32(item));
+                // adicioná-lo à lista
+                listaDeObjetosDeConcEscolhidos.Add(c);
+            }
+
+            // adicionar a lista ao objeto de crianças
+            planoDeAtividades.ListaDeObjetosDeConcretizacao = listaDeObjetosDeConcEscolhidos;
+
             if (ModelState.IsValid)
             {
                 db.PlanoDeAtividades.Add(planoDeAtividades);
