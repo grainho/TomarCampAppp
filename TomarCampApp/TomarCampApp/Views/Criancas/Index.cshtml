@@ -38,6 +38,8 @@
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
+
+                    @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID }) | @Html.ActionLink("🗑️", "Delete", new { id = item.ID })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Idade)
@@ -51,11 +53,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.NIF)
                 </td>
-                <td>
-                    @Html.ActionLink("✏️", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
+                
             </tr>
         }
     }

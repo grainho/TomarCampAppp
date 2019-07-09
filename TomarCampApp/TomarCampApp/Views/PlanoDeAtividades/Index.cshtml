@@ -27,17 +27,13 @@
     <tr>
         <td>
 
-            @Html.ActionLink(item.Turno, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID })
+            @Html.ActionLink("Turno "+item.Turno, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID }) |  @Html.ActionLink("🗑️", "Delete", new { id = item.ID })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dataInicioPA)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dataFimPA)
-        </td>
-        <td>
-            
-            @Html.ActionLink("🗑️", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
