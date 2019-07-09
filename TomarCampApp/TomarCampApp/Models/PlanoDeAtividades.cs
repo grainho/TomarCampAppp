@@ -20,8 +20,10 @@ namespace TomarCampApp.Models
          ErrorMessage = "Turno Inválido")]
         public string Turno { get; set; }
 
+        [Display(Name = "Data de Inicio de Plano de Actividades")]
         public DateTime dataInicioPA { get; set; }
 
+        [Display(Name = "Data de fim de Plano de Actividades")]
         public DateTime dataFimPA { get; set; }
 
         public virtual ICollection<Concretizacao> ListaDeObjetosDeConcretizacao { get; set; }
