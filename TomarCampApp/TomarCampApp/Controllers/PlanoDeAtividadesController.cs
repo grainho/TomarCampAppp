@@ -94,6 +94,7 @@ namespace TomarCampApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ListaObjetosDeConc = db.Concretizacao.OrderBy(f => f.dataInicioConcretizacao).ToList();
             return View(planoDeAtividades);
         }
 
@@ -104,13 +105,69 @@ namespace TomarCampApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Turno,dataInicioPA,dataFimPA")] PlanoDeAtividades planoDeAtividades, string[] opcoesEscolhidasDeConc)
         {
+            var pa = db.PlanoDeAtividades.Include(c => c.ListaDeObjetosDeConcretizacao).Where(c => c.ID == planoDeAtividades.ID).SingleOrDefault();
+
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(planoDeAtividades).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                pa.Turno = planoDeAtividades.Turno;
+                pa.dataInicioPA = planoDeAtividades.dataInicioPA;
+                pa.dataFimPA = planoDeAtividades.dataFimPA;
+                
+
             }
-            return View(planoDeAtividades);
+            else
+            {
+
+                ViewBag.ListaObjetosDeConc = db.Concretizacao.OrderBy(f => f.dataInicioConcretizacao).ToList();
+                return View(planoDeAtividades);
+            }
+            // tentar fazer o UPDATE
+            if (TryUpdateModel(pa, "", new string[] { nameof(pa.Turno), nameof(pa.dataInicioPA), nameof(pa.dataFimPA),  nameof(pa.ListaDeObjetosDeConcretizacao) }))
+            {
+                var elementosDeConc = db.Concretizacao.ToList();
+
+                if (opcoesEscolhidasDeConc != null)
+                {
+                    // se existirem opções escolhidas, vamos associá-las
+                    foreach (var cc in elementosDeConc)
+                    {
+                        if (opcoesEscolhidasDeConc.Contains(cc.ID.ToString()))
+                        {
+                            // se uma opção escolhida ainda não está associada, cria-se a associação
+                            if (!pa.ListaDeObjetosDeConcretizacao.Contains(cc))
+                            {
+                                pa.ListaDeObjetosDeConcretizacao.Add(cc);
+                            }
+                        }
+                        else
+                        {
+                            // caso exista associação para uma opção que não foi escolhida, 
+                            // remove-se essa associação
+                            pa.ListaDeObjetosDeConcretizacao.Remove(cc);
+                        }
+                    }
+                }
+                else
+                {
+                    // não existem opções escolhidas!
+                    // vamos eliminar todas as associações
+                    foreach (var cc in elementosDeConc)
+                    {
+                        if (pa.ListaDeObjetosDeConcretizacao.Contains(cc))
+                        {
+                            pa.ListaDeObjetosDeConcretizacao.Remove(cc);
+                        }
+                    }
+                }
+            }
+
+            // guardar as alterações
+            db.SaveChanges();
+
+            // devolver controlo à View
+            return RedirectToAction("Details");
         }
 
         // GET: PlanoDeAtividades/Delete/5
