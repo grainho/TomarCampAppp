@@ -70,7 +70,13 @@
 
                         <li>@Html.ActionLink("Crianças", "Index", "Criancas")</li>
                     }
+                    <li class="contact">@Html.ActionLink("Contact", "Contact", "Home")</li>
 
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                    }
                     <li>
                         @Html.ActionLink("Atividades", "")
                         <ul class="dropdown">
@@ -79,13 +85,7 @@
                             <li>@Html.ActionLink("Planos de Atividades", "Index", "PlanoDeAtividades")</li>
                         </ul>
                     </li>
-                    <li class="contact">@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -160,8 +160,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="imagens\animaLogo.png" />
     <Content Include="imagens\IsabelRodrigues.jpg" />
     <Content Include="imagens\JoanaRodrigues.jpg" />
+    <Content Include="imagens\Juntanima.png" />
+    <Content Include="imagens\parcerias.png" />
     <Content Include="imagens\TeresaRodrigues.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
