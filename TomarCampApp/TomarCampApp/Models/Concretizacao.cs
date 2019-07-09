@@ -17,10 +17,13 @@ namespace TomarCampApp.Models
 
         public int ID { get; set; }
 
+        [Display(Name = "Data de Inicio")]
         public DateTime dataInicioConcretizacao { get; set; }
 
+        [Display(Name = "Data de Fim")]
         public DateTime dataFimConcretizacao { get; set; }
 
+        [Display(Name = "Localização:")]
         public string local { get; set; }
 
 
