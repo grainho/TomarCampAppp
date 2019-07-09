@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<TomarCampApp.Models.PlanoDeAtividades>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Planos de Actividades";
 }
 
-<h2>Index</h2>
+<h2>Planos de Actividades</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar plano de actividades", "Create")
 </p>
 <table class="table">
     <tr>
@@ -27,7 +27,7 @@
     <tr>
         <td>
 
-            @Html.ActionLink("Turno "+item.Turno, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID }) |  @Html.ActionLink("🗑️", "Delete", new { id = item.ID })
+            @Html.ActionLink("Turno "+item.Turno, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID }) 
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dataInicioPA)
