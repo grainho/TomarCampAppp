@@ -27,14 +27,17 @@ namespace TomarCampApp.Models
         [Required]
         [RegularExpression("^[1-9][0-9]{7,}",
          ErrorMessage = "CC Invalido")]
+        [Display(Name = "Numero de Cartão de Cidadão")]
         public string NumCC { get; set; }
         [Required]
         [RegularExpression("^[1-9][0-9]{8,}",
          ErrorMessage = "NIF invalido")]
+        [Display(Name = "Numero de Identificação Fiscal")]
         public string NIF { get; set; }
         [Required]
         [RegularExpression("^[9][1236][0-9]{7}",
          ErrorMessage = "Número telemovel Inválido")]
+        [Display(Name = "Telemóvel")]
         public string Telemovel { get; set; }
         //[Required]
         [EmailAddress]
