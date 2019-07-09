@@ -30,7 +30,7 @@
     </dl>
 </div>
 <p>
-    @if (User.IsInRole("Func") || User.IsInRole("Admin"))
+    @if ((User.IsInRole("Func") && Model.Email.Equals(User.Identity.Name))|| User.IsInRole("Admin"))
     {
         <text>
         @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |

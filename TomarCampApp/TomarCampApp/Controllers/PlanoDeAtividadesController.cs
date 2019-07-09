@@ -25,12 +25,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
             if (planoDeAtividades == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(planoDeAtividades);
         }
@@ -90,12 +90,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
             if (planoDeAtividades == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             ViewBag.ListaObjetosDeConc = db.Concretizacao.OrderBy(f => f.dataInicioConcretizacao).ToList();
             return View(planoDeAtividades);
@@ -180,12 +180,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             PlanoDeAtividades planoDeAtividades = db.PlanoDeAtividades.Find(id);
             if (planoDeAtividades == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(planoDeAtividades);
         }

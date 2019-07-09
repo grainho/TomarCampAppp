@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista de Crianças</h2>
 
 <p>
     @Html.ActionLink("Adicionar Criança", "Create")
@@ -15,45 +15,38 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Idade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doencas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumCC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NIF)
-        </th>
-        <th></th>
+        
     </tr>
 
     @foreach (var item in Model)
     {
-        if (item.Pai.Email == ViewBag.mail)
+        if (User.IsInRole("Pai"))
+        {
+            if (item.Pai.Email == ViewBag.mail)
+            {
+                <tr>
+
+                    <td>
+
+
+                        @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID })
+                    </td>
+
+
+                </tr>
+            }
+        }
+        else
         {
             <tr>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
 
-                    @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID }) | @Html.ActionLink("🗑️", "Delete", new { id = item.ID })
+
+                    @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID })
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Idade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doencas)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumCC)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NIF)
-                </td>
-                
+
+
             </tr>
         }
     }

@@ -104,9 +104,9 @@ namespace TomarCampApp.Migrations
 
             //adicionar Funcionarios
             var funcionarios = new List<Funcionarios> {
-            new Funcionarios {ID=1, Nome="Isabel Rodrigues", Foto="IsabelRodrigues.jpg", ListaDeObjetosDeConcretizacao = new List<Concretizacao>{concretizacao[1]}},
-            new Funcionarios {ID=2, Nome="Joana Rodrigues", Foto="JoanaRodrigues.jpg", ListaDeObjetosDeConcretizacao = new List<Concretizacao>{concretizacao[2]}},
-            new Funcionarios {ID=3, Nome="Teresa Rodrigues", Foto="TeresaRodrigues.jpg", ListaDeObjetosDeConcretizacao = new List<Concretizacao>{concretizacao[3]}}
+            new Funcionarios {ID=1, Nome="Isabel Rodrigues", Email="isabelrodrigues@mail.pt", Foto="IsabelRodrigues.jpg", ListaDeObjetosDeConcretizacao = new List<Concretizacao>{concretizacao[1]}},
+            new Funcionarios {ID=2, Nome="Joana Rodrigues", Email="joanarodrigues@mail.pt", Foto="JoanaRodrigues.jpg", ListaDeObjetosDeConcretizacao = new List<Concretizacao>{concretizacao[2]}},
+            new Funcionarios {ID=3, Nome="Teresa Rodrigues", Email="teresarodrigues@mail.pt", Foto="TeresaRodrigues.jpg", ListaDeObjetosDeConcretizacao = new List<Concretizacao>{concretizacao[3]}}
 };
             funcionarios.ForEach(ff => context.Funcionarios.AddOrUpdate(f => f.Nome, ff));
             try

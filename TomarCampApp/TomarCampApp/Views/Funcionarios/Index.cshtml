@@ -17,10 +17,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Foto)
-        </th>
-        <th></th>
+        
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -28,7 +26,7 @@
         <td>
 
             @Html.ActionLink(item.Nome, "Details", new { id = item.ID })
-            @if (User.IsInRole("Func") || User.IsInRole("Admin"))
+            @if ((User.IsInRole("Func") && item.Email.Equals(User.Identity.Name))|| User.IsInRole("Admin"))
             {
 
                 <text>
@@ -36,10 +34,7 @@
                 </text>
             }
         </td>
-        <td>
-            <img src="~/imagens/@item.Foto" height="50" />
-            @*@Html.DisplayFor(modelItem => item.Foto)*@
-        </td>
+        
         <td>
 
            

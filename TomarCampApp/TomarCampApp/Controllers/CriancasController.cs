@@ -30,12 +30,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Criancas criancas = db.Criancas.Find(id);
             if (criancas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(criancas);
         }
@@ -121,12 +121,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Criancas criancas = db.Criancas.Find(id);
             if (criancas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             ViewBag.PaiFK = db.Criancas.Find(id).PaiFK;
             Session["pai"] = id;
@@ -221,12 +221,12 @@ namespace TomarCampApp.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Criancas criancas = db.Criancas.Find(id);
             if (criancas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(criancas);
         }

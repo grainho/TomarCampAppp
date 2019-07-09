@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Encarregados de Educação</h2>
 
 <p>
     @Html.ActionLink("Criar Conta", "Register", "Account")
@@ -14,22 +14,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Idade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumCC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NIF)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telemovel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -37,21 +22,7 @@
         <td>
             @Html.ActionLink(item.Nome, "Details", new { id = item.ID }) | @Html.ActionLink("✏️", "Edit", new { id = item.ID })
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Idade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumCC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NIF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telemovel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
+        
     </tr>
 }
 
