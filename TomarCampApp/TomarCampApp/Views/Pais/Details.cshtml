@@ -7,7 +7,7 @@
 <h2>Detalhes</h2>
 
 <div>
-    <h4>Pais</h4>
+    <h4>@Html.DisplayFor(model => model.Nome)</h4>
     <p>
         @Html.ActionLink("Adicionar Criança", "Create", "Criancas", new { id = Model.ID }, null)
     </p>
@@ -80,6 +80,6 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar à lista de Enc.Edu.", "Index")
 </p>

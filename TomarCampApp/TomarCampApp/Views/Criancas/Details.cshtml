@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Nome)</h2>
 
 <div>
-    <h4>Criancas</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -64,7 +64,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ListaDeObjetosDePlanoDeAtividades.First().Turno) |
+                @Html.DisplayNameFor(model => model.ListaDeObjetosDePlanoDeAtividades.First().Turno) 
                 
             </th>
         </tr>
@@ -79,6 +79,6 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar à lista de crianças", "Index")
 </p>
