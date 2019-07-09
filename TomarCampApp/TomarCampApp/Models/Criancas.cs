@@ -17,15 +17,23 @@ namespace TomarCampApp.Models
         }
 
         public int ID { get; set; }
-
+        [Required]
+        [RegularExpression(@"^[A-Z][a-z]{1,}[ ][A-Z][a-z]{1,}",
+         ErrorMessage = "Apenas primeiro e ultimo nomes")]       
         public string Nome { get; set; }
-
+        [RegularExpression(@"^[1-9][0-9]{0,1})$",
+         ErrorMessage = "Characters are not allowed.")]
         public int Idade { get; set; }
-
+        [RegularExpression(@"^[1-9] [0-9]{0,1}$",
+         ErrorMessage = "Characters are not allowed.")]
         public string Doencas { get; set; }
-
+        [Required]
+        [RegularExpression(@"^[1-9][0-9]{7,})$",
+         ErrorMessage = "Characters are not allowed.")]
         public string NumCC { get; set; }
-
+        [Required]
+        [RegularExpression(@"^[1-9][0-9]{8,})$",
+         ErrorMessage = "Characters are not allowed.")]
         public string NIF { get; set; }
 
 
