@@ -16,6 +16,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.dataCriacao)
@@ -32,7 +33,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Nome)
+            @Html.ActionLink(item.Nome, "Details", new { id = item.ID })
+            @if (User.IsInRole("Func"))
+            {
+                <text>
+                     | @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                </text>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dataCriacao)
@@ -43,20 +50,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.descricao)
         </td>
-        <td>
-            @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
-
-            @if (User.IsInRole("Func"))
-            {
-                <text>
-                    |
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </text>
-            }
-
-        </td>
+       
     </tr>
 }
 
